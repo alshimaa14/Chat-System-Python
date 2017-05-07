@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <title>{% block title %} Home {% end %}</title>
+    <link rel="stylesheet" href="{{static_url('css/bootstrap.css')}}">
+    {% block css %}  {% end %}
+    <script src="{{static_url('jquery-3.1.1.js')}}"></script>
+    <script src="{{static_url('bootstrap.js')}}"></script>
+    {% block script %}  {% end %}
+</head>
+<body style="padding: 15px;">
+{% if username !="" and user_id !=None %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                 {% block content %}
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Chat Game</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav  navbar-nav">
+
+                                <li class="active"><a href="#home" data-toggle="tab" >Home <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#groups" data-toggle="tab" >Groups</a></li>
+                                <li><a href="#people" data-toggle="tab" >People</a></li>
+
+                            </ul>
+                            <!--<form class="navbar-form navbar-left">-->
+                                <!--<div class="form-group">-->
+                                    <!--<input type="text" class="form-control" placeholder="Search">-->
+                                <!--</div>-->
+                                <!--<button type="submit" class="btn btn-default">Submit</button>-->
+                            <!--</form>-->
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{username}} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="/updateUser">Setting</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="/logout">logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+
+                    </div><!-- /.container-fluid -->
+
+                </nav>
+                <div class="tab-content">
+                <div id="home" style="padding: 15px;" class="tab-pane   active table-bordered">
+
+                    <div class="page-header">
+                        <h1>leader Board</h1>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="thumbnail text-center">
+                            <img src="{{static_url('images/b_black.png')}}" width="150" height="150" alt="">
+                                <div class="caption ">
+                                    <h3>Super Friend</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail text-center">
+                                <img src="{{static_url('images/b_black.png')}}" width="150" height="150" alt="">
+                                <div class="caption ">
+                                    <h3>Party Man</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail text-center">
+                                <img src="{{static_url('images/b_black.png')}}" width="150" height="150" alt="">
+                                <div class="caption ">
+                                    <h3>Chatty One</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="thumbnail text-center">
+                                <img src="{{static_url('images/b_black.png')}}" width="150" height="150" alt="">
+                                <div class="caption ">
+                                    <h3>Public Figure</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                        <ul class="list-group">
+                            {% for fr in superFriend  %}
+                            <li class="list-group-item">{{ fr[1] }}</li>
+                            {% end %}
+                        </ul>
+                        </div>
+                        <div class="col-sm-3">
+                            <ul class="list-group">
+                                {% for par in partyFriend  %}
+                                <li class="list-group-item">{{ par[1] }}</li>
+                                {% end %}
+                            </ul>
+                        </div>
+                        <div class="col-sm-3">
+                            <ul class="list-group">
+                                <li class="list-group-item">Blum</li>
+                                <li class="list-group-item">Grum</li>
+                                <li class="list-group-item">Dumpo</li>
+                                <li class="list-group-item">Lolita</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-3">
+                            <ul class="list-group">
+                                {% for pub in publicFig  %}
+                                <li class="list-group-item">{{ pub[1] }}</li>
+                                {% end %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="groups" style="padding: 15px;" class="tab-pane fade table-bordered ">
+                    <div class="page-header">
+                    <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Create Group</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Create Group</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/addGroup" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="owner_id" value="1">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Group Name:</label>
+                                            <input type="text" name="name" class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="group_img" class="form-control-label">Group Image:</label>
+                                            <input type="file" name="group_pic" id="group_img">
+                                        </div>
+                                         <input type="submit" value="Add Group" class="btn btn-primary">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <h1>All Groups</h1>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+
+                        {% for gr in groups %}
+                        <div class="col-sm-2">
+                            <div class="thumbnail text-center">
+                                <img src="{{static_url('images/b_black.png')}}" width="100" height="100" alt="">
+                                <div class="caption ">
+                                    <h3><a href="/chat" >{{ gr[1] }}</a></h3>
+                                </div>
+                            </div>
+                        </div>
+                        {% end %}
+                    </div>
+                    <div class="page-header">
+                        <h1>My Groups</h1>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                          {% for gr in mygroups %}
+                        <div class="col-sm-2">
+                            <div class="thumbnail text-center">
+                                <img src="{{static_url('images/b_black.png')}}" width="100" height="100" alt="">
+                                <div class="caption ">
+                                    <h3><a href="/chat"  >{{ gr[1] }}</a></h3>
+                                    <form action="/delGroup" method="post">
+                                        <input type="hidden" name="group_id" value="{{gr[0]}}">
+                                        <input class="btn btn-warning" type="submit" value="Remove">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% end %}
+                    </div>
+                </div>
+                <div id="people" style="padding: 15px;" class="tab-pane fade ">
+                    <div class="page-header">
+                        <h1>All People</h1>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+
+                        {% for user in users  %}
+                        <div class="col-sm-2">
+                            <div class="thumbnail text-center">
+                                <img src="{{static_url('images/b_black.png')}}" width="100" height="100" alt="">
+                                <div class="caption ">
+                                    <h3><a  href="#private_room" data-toggle="tab">{{ user[1] }}</a></h3>
+                                    <form action="/addFriend" method="post">
+                                        <input type="hidden" name="friendval" value="{{user[0]}}">
+                                        <input class="btn btn-warning" type="submit" value="Add">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% end %}
+
+                    </div>
+                    <div class="page-header">
+                        <h1>My People</h1>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+
+                        {% for friend in myFriends  %}
+                        <div class="col-sm-2">
+                            <div class="thumbnail text-center">
+                                <img src="{{static_url('images/b_black.png')}}" width="100" height="100" alt="">
+                                <div class="caption ">
+                                    <h3><a href="#private_room" data-toggle="tab">{{ friend[1] }}</a></h3>
+                                    <form action="/delFriend" method="post">
+                                        <input type="hidden" name="friend_id" value="{{friend[0]}}">
+                                        <input class="btn btn-warning" type="submit" value="remove">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% end %}
+
+                    </div>
+                </div>
+                    <!-- GROUP CHAT ROOM -->
+                <div id="group_room" class="tab-pane fade">
+
+                </div>
+                    <!--  PRIVATE CHAT ROOM -->
+                    <div id="private_room" class="tab-pane fade">
+                        hiiiiiiiiii Private
+                    </div>
+                </div>
+                {% end %}
+            </div>
+        </div>
+
+    </div>
+{% end %}
+</body>
+</html>

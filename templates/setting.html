@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{static_url('css/bootstrap.css')}}">
+    <script src="{{static_url('jquery-1.9.1.js')}}"></script>
+    <script src="{{static_url('bootstrap.js')}}"></script>
+
+</head>
+<body>
+<div class="container">
+<form class="form-horizontal" method="post" action="/updateUser">
+<fieldset>
+
+<!-- Form Name -->
+<legend> Account setting</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Change Username</label>
+  <div class="col-md-4">
+  <input id="textinput" name="name" type="text" placeholder="new username " class="form-control input-md">
+
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passwordinput">new password</label>
+  <div class="col-md-4">
+    <input id="passwordinput" name="pass" type="password" placeholder="new password" class="form-control input-md">
+
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="passwordinput">repeat password</label>
+  <div class="col-md-4">
+    <input id="passwordinput" name="repass" type="password" placeholder="repeat password" class="form-control input-md">
+
+  </div>
+</div>
+
+
+<!-- Button -->
+<div class="form-group">
+  <div class="col-xs-offset-4 col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-success">Update</button>
+  </div>
+</div>
+
+    <div class="form-group">
+  <div class="col-xs-offset-4 col-md-4">
+    <a href="/">Back to home</a>
+  </div>
+</div>
+
+
+
+
+
+
+</fieldset>
+</form>
+
+</div>
+<script src="{{static_url('bootstrap.min.js')}}"></script>
+</body>
+</html>
